@@ -1,0 +1,83 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>arduino_uart</Name>
+    <Description>arduino uno/nano minimize uart framework in atmelstudio7</Description>
+    <ProjectType>CandCPP</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>arduino_uart</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.png</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="arduino_vm.cproj" File="arduino_vm.cproj" ReplaceParameters="true">
+      <Folder Name="libm" TargetFolderName="libm" />
+      <Folder Name="Debug" TargetFolderName="Debug">
+        <Folder Name="Debug" TargetFolderName="Debug">
+          <Folder Name="src" TargetFolderName="src" />
+        </Folder>
+        <ProjectItem ReplaceParameters="false" TargetFileName="arduino_vm.eep">arduino_vm.eep</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="arduino_vm.elf">arduino_vm.elf</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="arduino_vm.hex">arduino_vm.hex</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="arduino_vm.lss">arduino_vm.lss</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="arduino_vm.map">arduino_vm.map</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="arduino_vm.srec">arduino_vm.srec</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="makedep.mk">makedep.mk</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Makefile">Makefile</ProjectItem>
+      </Folder>
+      <Folder Name="src" TargetFolderName="src">
+        <Folder Name="ASF" TargetFolderName="ASF">
+          <Folder Name="common" TargetFolderName="common">
+            <Folder Name="boards" TargetFolderName="boards">
+              <Folder Name="user_board" TargetFolderName="user_board">
+                <ProjectItem ReplaceParameters="true" TargetFileName="init.c">init.c</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="user_board.h">user_board.h</ProjectItem>
+              </Folder>
+              <ProjectItem ReplaceParameters="true" TargetFileName="board.h">board.h</ProjectItem>
+            </Folder>
+            <Folder Name="utils" TargetFolderName="utils">
+              <Folder Name="interrupt" TargetFolderName="interrupt">
+                <ProjectItem ReplaceParameters="true" TargetFileName="interrupt_avr8.h">interrupt_avr8.h</ProjectItem>
+              </Folder>
+              <Folder Name="make" TargetFolderName="make">
+                <ProjectItem ReplaceParameters="false" TargetFileName="Makefile.avr.in">Makefile.avr.in</ProjectItem>
+              </Folder>
+              <ProjectItem ReplaceParameters="true" TargetFileName="interrupt.h">interrupt.h</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="parts.h">parts.h</ProjectItem>
+            </Folder>
+          </Folder>
+          <Folder Name="mega" TargetFolderName="mega">
+            <Folder Name="utils" TargetFolderName="utils">
+              <Folder Name="assembler" TargetFolderName="assembler">
+                <ProjectItem ReplaceParameters="true" TargetFileName="gas.h">gas.h</ProjectItem>
+              </Folder>
+              <Folder Name="preprocessor" TargetFolderName="preprocessor">
+                <ProjectItem ReplaceParameters="true" TargetFileName="mrepeat.h">mrepeat.h</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="preprocessor.h">preprocessor.h</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="stringz.h">stringz.h</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="tpaste.h">tpaste.h</ProjectItem>
+              </Folder>
+              <ProjectItem ReplaceParameters="true" TargetFileName="assembler.h">assembler.h</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="compiler.h">compiler.h</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="progmem.h">progmem.h</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="status_codes.h">status_codes.h</ProjectItem>
+            </Folder>
+          </Folder>
+        </Folder>
+        <Folder Name="config" TargetFolderName="config">
+          <ProjectItem ReplaceParameters="true" TargetFileName="conf_board.h">conf_board.h</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="asf.h">asf.h</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="main.c">main.c</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="public.h">public.h</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ring_buffer.h">ring_buffer.h</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="uart.h">uart.h</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="arduino_vm.componentinfo.xml">arduino_vm.componentinfo.xml</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
