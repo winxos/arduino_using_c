@@ -34,7 +34,7 @@ def pack_msg(n):
 
 
 if ser != None:
-    t = serial.Serial(ser, 115200)
+    t = serial.Serial(ser, 250000)
     getcmd(t).start()
     time.sleep(0.2)
     while True:

@@ -5,7 +5,6 @@
  *  Author: winxo
  */ 
 
-
 #ifndef PUBLIC_H_
 #define PUBLIC_H_
 
@@ -15,7 +14,6 @@
 #include <stdio.h>
 
 typedef uint8_t u8;
-
 /* public function	*/
 
 extern int split(char dst[][80], char *str, const char *spl);

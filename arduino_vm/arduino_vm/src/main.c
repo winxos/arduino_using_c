@@ -8,7 +8,8 @@ const char test_string[] = "Hello, AISTLAB!\n";
 int main(void)
 {
 	uart_init();
-	uart_send_str(test_string);
+	print_str(test_string);
+	print_number(-123456789);
 	while (true)
 	{
 		if (uart_char_waiting())

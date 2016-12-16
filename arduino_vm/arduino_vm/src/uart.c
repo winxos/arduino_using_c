@@ -1,9 +1,9 @@
 /*
- * uart.c
- *
- * Created: 2016-12-7 10:22:42
- *  Author: winxos
- */ 
+* uart.c
+*
+* Created: 2016-12-7 10:22:42
+*  Author: winxos
+*/
 #include "uart.h"
 
 ISR(UART0_DATA_EMPTY_IRQ)
@@ -52,6 +52,48 @@ void uart_init()
 	sei();
 }
 
-FILE uart_output = FDEV_SETUP_STREAM(uart_putchar, NULL, _FDEV_SETUP_WRITE);
-FILE uart_input = FDEV_SETUP_STREAM(NULL, uart_getchar, _FDEV_SETUP_READ);
+
+void uart_putchar(uint8_t data)
+{
+	// Disable interrupts to get exclusive access to ring_buffer_out.
+	cli();
+	if (ring_buffer_is_empty(&ring_buffer_out)) {
+		// First data in buffer, enable data ready interrupt
+		UCSR0B |=  (1 << UDRIE0);
+	}
+	// Put data in buffer
+	ring_buffer_put(&ring_buffer_out, data);
+
+	// Re-enable interrupts
+	sei();
+}
+void print_str(const char *data)
+{
+	uint8_t i=0;
+	while (i<strlen(data))
+	{
+		uart_putchar(data[i++]);
+	}
+	_delay_ms(1);
+}
+void print_number(int32_t n)
+{
+	char buf[12]={0},offset=0;
+	if (n<0)
+	{
+		buf[0]='-';
+		n=-n;
+		offset=1;
+	}
+	ltoa(n,buf+offset,10);
+	print_str(buf);
+}
+uint8_t uart_getchar(void)
+{
+	return ring_buffer_get(&ring_buffer_in);
+}
+bool uart_char_waiting(void)
+{
+	return !ring_buffer_is_empty(&ring_buffer_in);
+}
 

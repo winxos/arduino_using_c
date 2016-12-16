@@ -39,8 +39,8 @@ void receive_data(u8 data)
 		//uart_putchar(data);
 		if (data==';')
 		{
-			uart_send_str("get:");
-			uart_send_str((char*)frame_buf.data);
+			print_str("get:");
+			print_str((char*)frame_buf.data);
 			shell();
 			frame_buf.counter=0;	
 			memset(frame_buf.data,0,BUF_MAX_LEN);
