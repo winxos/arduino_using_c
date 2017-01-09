@@ -202,20 +202,11 @@
   <ItemGroup>
     <Folder Include="Debug\" />
     <Folder Include="src\" />
-    <Folder Include="src\ASF\" />
-    <Folder Include="src\ASF\common\" />
-    <Folder Include="src\ASF\common\boards\" />
-    <Folder Include="src\ASF\common\boards\user_board\" />
-    <Folder Include="src\ASF\common\utils\" />
-    <Folder Include="src\ASF\common\utils\interrupt\" />
-    <Folder Include="src\ASF\common\utils\make\" />
-    <Folder Include="src\ASF\mega\" />
-    <Folder Include="src\ASF\mega\utils\" />
-    <Folder Include="src\ASF\mega\utils\assembler\" />
-    <Folder Include="src\ASF\mega\utils\preprocessor\" />
-    <Folder Include="src\config\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\fs.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\protocol.c">
       <SubType>compile</SubType>
     </Compile>
@@ -225,78 +216,18 @@
     <Compile Include="src\public.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ring_buffer.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ring_buffer.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="src\shell.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\uart.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\uart.h">
+    <Compile Include="src\string_table.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\vm.c">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\asf.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\utils\make\Makefile.avr.in">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\status_codes.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\boards\user_board\user_board.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\assembler\gas.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\preprocessor\mrepeat.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\boards\board.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\common\boards\user_board\init.c">
+    <Compile Include="src\vm_manager.c">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\common\utils\interrupt\interrupt_avr8.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\utils\parts.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\assembler.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\compiler.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\utils\interrupt.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\preprocessor\stringz.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\preprocessor\preprocessor.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\config\conf_board.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\progmem.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\mega\utils\preprocessor\tpaste.h">
-      <SubType>compile</SubType>
-    </None>
     <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>
