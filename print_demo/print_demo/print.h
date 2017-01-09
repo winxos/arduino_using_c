@@ -10,5 +10,6 @@
 #define PRINT_H_
 
 void print(char* fmt, ...);
+void print2(char* fmt, ...);
 
 #endif /* PRINT_H_ */

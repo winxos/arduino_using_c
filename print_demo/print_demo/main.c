@@ -1,5 +1,5 @@
 /*
- * self printf atmel studio7
+ * self format print using atmel studio7
  *
  * Created: 2017-1-3 19:53:08
  * Author : winxos
@@ -42,6 +42,6 @@ int main(void)
 		_delay_ms(500);
 		PORTB&=~0b00100000;
 		_delay_ms(50);
-		print("%x %d\n",i,i++);
+		print("%10x %30d\n",i,i++);
 	}
 }
