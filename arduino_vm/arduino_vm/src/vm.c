@@ -99,36 +99,36 @@ bool step_SML() //
     case SREGD: regd = ADDER;
       break;
     case PMOD:
-      //pinMode(operand, ADDER);
+      pinMode(operand, ADDER);
       break;
     case DWP:
-      //digitalWrite(operand, ADDER);
+      digitalWrite(operand, ADDER);
       break;
     case DRP:
-      //ADDER = digitalRead(operand);
+      ADDER = digitalRead(operand);
       break;
     case AWP:
-     // analogWrite(operand, ADDER);
+      analogWrite(operand, ADDER);
       break;
     case ARP:
-      //ADDER = analogRead(operand);
+      ADDER = analogRead(operand);
       break;
     case SLP://sleep
       if (!START_CLOCK)
       {
         START_CLOCK = true;
-        //slp_ct = millis();
+        slp_ct = millis();
         total_instructions--; //not finished , so can't caculate the count.
         return true;//
       }
       else
       {
-        //if (millis() - slp_ct < operand * 10)
+        if (millis() - slp_ct < operand * 10)
         {
           total_instructions--; //not finished , so can't caculate the count.
           return true;
         }
-        //else //sleep finished
+        else //sleep finished
         {
           START_CLOCK = false;
         }
@@ -166,12 +166,6 @@ void run_code(u16 *fbuf, u8 sz)
 {
   init_SML();
   memcpy(MEM, fbuf, sz * sizeof(u16));
-  //  puts("run code:");
-  //  for (int i = 0; i < sz; i++)
-  //  {
-  //    printf("%2d:%04x\n", i, MEM[i]);
-  //  }
-  //  puts("");
   RUN_VM = true;
 }
 int li = 0;

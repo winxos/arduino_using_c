@@ -1,5 +1,5 @@
 #include "public.h"
-
+volatile uint32_t _MILLIS=0;
 char STR_MEM_BUF[80] = {0};
 char *get_flash_str(const char *str)
 {
@@ -19,7 +19,6 @@ int split(char dst[][10], char *str, const char *spl)//for single line chars spl
 	}
 	return n;
 }
-extern void put_char(char ch);
 
 static int width=0;
 static char state=0;
@@ -31,20 +30,20 @@ static void print_str(char* str)
 {
 	while(*str)
 	{
-		put_char(*str++);
+		_putchar(*str++);
 	}
 }
-extern void put_char(char ch);
+
 inline void _print_nchar(char ch,int n)
 {
 	for(int i=0;i<n;i++)
 	{
-		put_char(ch);
+		_putchar(ch);
 	}
 }
 static void _deal_fmt(const char* fmt)
 {
-	int d;
+	long d;
 	char buf[16];
 	switch (*fmt) //%  next
 	{
@@ -52,23 +51,23 @@ static void _deal_fmt(const char* fmt)
 		print_str(va_arg(ap,char*));
 		break;
 		case 'x':
-		d = va_arg(ap,int);     //
-		itoa(d,buf,16);         //
+		d = va_arg(ap,long);     //
+		ltoa(d,buf,16);         //
 		_print_nchar(' ',width-strlen(buf));
 		print_str(buf);
 		break;
 		case 'd':
-		d = va_arg(ap,int);
-		itoa(d,buf,10);         //
+		d = va_arg(ap,long);
+		ltoa(d,buf,10);         //
 		_print_nchar(' ',width-strlen(buf));
 		print_str(buf);
 		break;
 		case 'c':
-		put_char(va_arg(ap,int));
+		_putchar(va_arg(ap,int));
 		break;
 	}
 }
-static enum FMT_STATE{
+enum FMT_STATE{
 	FMT_NORMAL,FMT_BEGIN,FMT_WIDTH
 };
 int printf(const char* fmt, ...)
@@ -85,7 +84,7 @@ int printf(const char* fmt, ...)
 			}
 			else
 			{
-				put_char(*fmt);
+				_putchar(*fmt);
 			}
 			break;
 			case FMT_BEGIN:
@@ -121,8 +120,57 @@ int printf(const char* fmt, ...)
 	va_end(ap);
 	return 0;
 }
-
-bool digitalRead(u8 p)
+u8 _state=0b00100000;
+ISR(TIMER0_OVF_vect)
 {
-	return true;
+	_MILLIS++;
+	// 	if (_MILLIS%100==0)
+	// 	{
+	// 		_state=~_state;
+	// 		PORTB=_state;
+	// 	}
+	_state=~_state;
+	PORTB=_state;
+}
+void timer0_init(void)
+{
+	cli();
+	TCCR0B =0x3;
+	TCNT0 = 256-250; //1ms
+	TIMSK0 |= (1 << TOIE0);
+	sei();
+}
+void usart_init(void)
+{
+	// Set baud rate
+	UBRR0H = (uint8_t)(UBRR_VALUE>>8);
+	UBRR0L = (uint8_t)UBRR_VALUE;
+	// Set frame format to 8 data bits, no parity, 1 stop bit
+	UCSR0C |= (1<<UCSZ01)|(1<<UCSZ00);
+	//enable transmission and reception
+	UCSR0B |= (1<<RXEN0)|(1<<TXEN0);
+}
+void pinMode(u8 p,u8 v)
+{
+	
+}
+void digitalWrite(u8 p,u8 v)
+{
+	
+}
+u8 digitalRead(u8 p)
+{
+	return 0;
+}
+u16 analogRead(u8 p)
+{
+	return 0;
+}
+void analogWrite(u8 p,u8 v)
+{
+	
+}
+uint32_t millis(void)
+{
+	return _MILLIS;
 }

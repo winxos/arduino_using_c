@@ -29,9 +29,11 @@ typedef unsigned char bool;
 #define GFS get_flash_str
 extern char STR_MEM_BUF[80];
 extern char *get_flash_str(const char *str);
-
+extern void _putchar(char ch);
+extern void timer0_init(void);
+extern void usart_init(void);
 /* public.c     */
-extern int serial_putc( char c, struct __file * );
+//extern int serial_putc( char c, struct __file * );
 extern int split(char dst[][10], char *str, const char *spl);
 extern int printf(const char *fmt, ...);
 /*	vm_manager.c */
@@ -86,6 +88,12 @@ extern void test_fs(void);
 extern int get_file_by_index(u8 index,struct FILE_INFO *out);
 extern u8 max_file_number;
 
-/* port*/
-extern bool digitalRead(u8 p);
+/* arduino*/
+extern void pinMode(u8 p,u8 v);
+extern u8 digitalRead(u8 p);
+extern void digitalWrite(u8 p,u8 v);
+extern u16 analogRead(u8 p);
+extern void analogWrite(u8 p,u8 v);
+extern uint32_t millis(void);
+extern volatile uint32_t _MILLIS;
 #endif

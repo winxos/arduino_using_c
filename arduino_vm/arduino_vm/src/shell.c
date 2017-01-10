@@ -107,7 +107,7 @@ static void _load(char args[2][10])
 static void _pmode(char args[2][10])
 {
 	u8 p = atoi(args[0]), m = atoi(args[1]);
-	//pinMode(p, m);
+	pinMode(p, m);
 	printf(GFS(PSTR("SET PIN %d MODE %d\n")), p, m);
 }
 static void _dread(char args[2][10])
@@ -118,18 +118,18 @@ static void _dread(char args[2][10])
 static void _dwrite(char args[2][10])
 {
 	u8 p = atoi(args[0]), m = atoi(args[1]);
-	//digitalWrite(p, m);
+	digitalWrite(p, m);
 	printf(GFS(PSTR("SET (PIN %d) = %d\n")), p, m);
 }
 static void _aread(char args[2][10])
 {
 	u8 p = atoi(args[0]);
-	//printf(GFS(PSTR("(PIN %d) = %d\n")), p, analogRead(p));
+	printf(GFS(PSTR("(PIN %d) = %d\n")), p, analogRead(p));
 }
 static void _awrite(char args[2][10])
 {
 	u8 p = atoi(args[0]), m = atoi(args[1]);
-	//analogWrite(p, m);
+	analogWrite(p, m);
 	printf(GFS(PSTR("SET (PIN %d) = %d\n")), p, m);
 }
 static int cmd_index(char *s)
@@ -145,7 +145,7 @@ static int cmd_index(char *s)
 }
 void shell(void)
 {
-	struct FRAME *fbuf = get_frame();
+	FRAME *fbuf = get_frame();
 	if (input_state == SHELL)
 	{
 		char *buf = fbuf->data;
